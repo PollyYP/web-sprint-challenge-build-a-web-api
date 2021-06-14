@@ -21,7 +21,7 @@ router.get("/api/actions/:id", validateActionID, async (req, res) => {
   res.json(req.thisAction);
 });
 
-router.post("/api/actions", async (req, res, next) => {
+router.post("/api/actions", validateAction, async (req, res, next) => {
   try {
     const newAction = await db.insert(req.body);
     res.status(201).json(newAction);
